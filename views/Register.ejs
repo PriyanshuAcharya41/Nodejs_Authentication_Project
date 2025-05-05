@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container{
+            border:solid 2px wheat;
+            
+            padding: 5vh;
+            border-radius: 20px;
+            input{
+                background: transparent;
+            }
+            #exampleInputEmail1{
+                background:transparent;
+                color:wheat;
+
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-light">
+    <div class="container my-5" style="width:600px">
+        <h1>User Registration</h1>
+        <form action="/register" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input name="password" type="password" class="form-control" id="exampleInputEmail1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Profile</label>
+                <input name="file" type="file" class="form-control" id="exampleInputPassword1">
+              </div>
+            <div class="d-grid col-6 mx-auto mt-4">
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="d-flex justify-content-end mt-2">
+                Already have an account <a href="/login" class="mx-2 text-warning">Login</a>
+            </div>
+          </form>
+    </div>
+</body>
+</html>
