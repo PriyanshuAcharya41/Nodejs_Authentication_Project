@@ -78,7 +78,7 @@ app.get('/login',(req,res)=>{
     res.render('Login.ejs');
 })
 app.get('/',(req,res)=>{
-    res.render('login.ejs');
+    res.render('Login.ejs');
 })
 
 app.get('/users',async (req,res)=>{
