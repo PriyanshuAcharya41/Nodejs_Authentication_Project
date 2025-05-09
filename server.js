@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose';
 import { User } from './Models/user.js';
+import cors from 'cors'
 import multer from 'multer';
 import path from 'path'
 const app=express();
@@ -16,9 +17,16 @@ const storage = multer.diskStorage({
   
   const upload = multer({ storage: storage })
 
-mongoose.connect("mongodb://localhost:27017/nodejs_express_api_series").then(()=>{
-    console.log("Mongo db connected");
-}).catch((error)=>{console.log(error)});
+// mongoose.connect("mongodb://localhost:27017/nodejs_express_api_series").then(()=>{
+//     console.log("Mongo db connected");
+// }).catch((error)=>{console.log(error)});
+
+mongoose.connect(
+    "mongodb+srv://priyanshuacharyaofficial:tfB9CRlQr9XCO8BV@cluster0.bof96kl.mongodb.net/",
+    {
+        "dbName":"AUTHENCTICATION"
+    }
+).then(()=>console.log("Mongo DB Connected")).catch((error)=>console.log(error));
 
 import { v2 as cloudinary } from 'cloudinary';
 // Configuration
@@ -40,12 +48,12 @@ app.post('/register',upload.single('file'), async(req,res)=>{
         const cloudinaryRes=await cloudinary.uploader.upload(file,{
             folder:'FullStackAuthentication'
         });
+        console.log(cloudinaryRes)
         let user=await User.create({
             profileImg:cloudinaryRes.secure_url,
             name,email,password
         })
         res.redirect('/login');
-        console.log(cloudinaryRes,name,email,password);
 
     }
     catch(error){
@@ -88,6 +96,8 @@ app.get('/users',async (req,res)=>{
     let user=await User.find().sort({createdAt:-1});
     res.render('Users.ejs',{user});
 })
-app.listen(1000,()=>{
-    console.log("Server is running on port 1000");
+app.use(cors());
+const port = process.env.PORT || 2000;
+app.listen(port,()=>{
+    console.log(`sever is running on ${port}`);
 })
